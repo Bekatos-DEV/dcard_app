@@ -1,0 +1,7 @@
+{
+  "name": "dcard_app",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid class="login-grid-style">
+    <ion-row>
+      <ion-col class="ta-center">
+        <ion-img class="-style" src="../../assets/imgs/bekatos-logo.png"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ta-center">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ta-center">
+        <ion-img class="gm-img-style" src="../../assets/imgs/dcard.png"></ion-img>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <form #form="ngForm" (ngSubmit)="Login(form)" method="post">
+            <ion-item>
+              <ion-label position="floating">Kullanıcı Adı</ion-label>
+              <ion-input (keyup.enter)="Login(form)" ngModel type="text" name="username"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Şifre</ion-label>
+              <ion-input (keyup.enter)="Login(form)" ngModel type="password" name="password"></ion-input>
+            </ion-item>
+            <button style="background-color: #f2594d; width: 270px; height: 70px;"
+            (click)="tabs()"
+            type="submit" expand="full" color="primary"><h4>Giriş</h4></button>
+          </form>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ta-center">
+        <h6>Bekatos © 2022</h6>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

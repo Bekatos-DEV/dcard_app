@@ -1,0 +1,27 @@
+ ion-content{
+     --background: none;
+     background-image: url('../../assets/imgs/rain.gif');
+     background-position: center top;
+     background-repeat: repeat;
+ }
+
+.header-style{
+    width: 300px;
+}
+
+.gm-img-style{
+    width: 160px;
+}
+
+.login-grid-style{
+    position: absolute;
+    width: 90%;
+    height: 60%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.img-style{
+    max-width: 60px;
+  }
