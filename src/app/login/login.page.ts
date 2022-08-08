@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ServerServiceService } from '../api/server-service.service';
+import { Md5 } from 'ts-md5/dist/md5';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -7,13 +10,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  constructor(private route: Router) {}
+  username: any;
+  password: any;
+  md5password: any;
+  user: any = [];
+  constructor(
+    private route: Router,
+    public storage: Storage,
+    public serverService: ServerServiceService
+  ) {}
 
   ngOnInit() {}
   async tabs() {
-    //you can use either of below
+    this.md5password = Md5.hashStr(this.password);
+    this.serverService.login(this.username).subscribe(
+      (res: any) => {
+        this.user = res;
+        if (
+          this.username === this.user[0].username &&
+          this.md5password === this.user[0].password
+        ) {
+          console.log('success');
+          this.route.navigateByUrl('/tabs');
+        }
+      },
+      (error: any) => {
+        console.log('Error', error);
+      }
+    );
+
     console.log('tabs');
-    this.route.navigateByUrl('/tabs');
+
     //this.navCtrl.navigateRoot('/app/tabs/(home:home)')
   }
 }

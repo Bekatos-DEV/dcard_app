@@ -8,16 +8,21 @@
   <ion-grid class="login-grid-style">
     <ion-row>
       <ion-col class="ta-center">
-        <ion-img class="-style" src="../../assets/imgs/bekatos-logo.png"></ion-img>
+        <ion-img
+          class="-style"
+          src="../../assets/imgs/bekatos-logo.png"
+        ></ion-img>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col class="ta-center">
-      </ion-col>
+      <ion-col class="ta-center"> </ion-col>
     </ion-row>
     <ion-row>
       <ion-col class="ta-center">
-        <ion-img class="gm-img-style" src="../../assets/imgs/dcard.png"></ion-img>
+        <ion-img
+          class="gm-img-style"
+          src="../../assets/imgs/dcard.png"
+        ></ion-img>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -26,15 +31,31 @@
           <form #form="ngForm" (ngSubmit)="Login(form)" method="post">
             <ion-item>
               <ion-label position="floating">Kullanıcı Adı</ion-label>
-              <ion-input (keyup.enter)="Login(form)" ngModel type="text" name="username"></ion-input>
+              <ion-input
+                (keyup.enter)="Login(form)"
+                [(ngModel)]="username"
+                type="text"
+                name="username"
+              ></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Şifre</ion-label>
-              <ion-input (keyup.enter)="Login(form)" ngModel type="password" name="password"></ion-input>
+              <ion-input
+                (keyup.enter)="Login(form)"
+                [(ngModel)]="password"
+                type="password"
+                name="password"
+              ></ion-input>
             </ion-item>
-            <button style="background-color: #f2594d; width: 270px; height: 70px;"
-            (click)="tabs()"
-            type="submit" expand="full" color="primary"><h4>Giriş</h4></button>
+            <button
+              style="background-color: #f2594d; width: 270px; height: 70px"
+              (click)="tabs()"
+              type="submit"
+              expand="full"
+              color="primary"
+            >
+              <h4>Giriş</h4>
+            </button>
           </form>
         </ion-list>
       </ion-col>
@@ -45,5 +66,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
