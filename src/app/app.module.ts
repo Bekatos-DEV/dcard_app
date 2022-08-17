@@ -7,9 +7,10 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ModalAddLinkComponent } from './modal-add-link/modal-add-link.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ModalAddLinkComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

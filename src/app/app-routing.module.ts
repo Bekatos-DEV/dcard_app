@@ -16,7 +16,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/login',
     pathMatch: 'full',
-  }, 
+  },
 ];
 @NgModule({
   imports: [
@@ -25,5 +25,3 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-
-

@@ -1,22 +1,18 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
-import { Storage } from '@ionic/storage-angular';
-import { ServerServiceService } from '../api/server-service.service';
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { ModalAddLinkComponent } from '../modal-add-link/modal-add-link.component';
+import { Storage } from '@ionic/storage-angular';
+import { ServerServiceService } from '../api/server-service.service';
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss'],
+  selector: 'app-modal-add-link',
+  templateUrl: './modal-add-link.component.html',
+  styleUrls: ['./modal-add-link.component.scss'],
 })
-export class Tab1Page {
-  @ViewChild(IonModal) modal: IonModal;
-  @ViewChild(IonModal) modal2: IonModal;
+export class ModalAddLinkComponent {
   userid: any;
   user: any = [];
   links: any = [];
+
   constructor(
     public storage: Storage,
     private serverService: ServerServiceService,
@@ -41,12 +37,13 @@ export class Tab1Page {
     });
   }
   cancel() {
-    this.modal.dismiss(null, 'cancel');
+    return this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  confirm() {}
-
-  async presentAlert(category: any, classe: any) {
+  confirm() {
+    return this.modalCtrl.dismiss('confirm');
+  }
+  async presentAlert(linkurl: any, linkid: any) {
     const alert = await this.alertController.create({
       header: 'Please enter your info',
 
@@ -54,12 +51,12 @@ export class Tab1Page {
         {
           name: 'name1',
           type: 'text',
-          placeholder: 'Sosyal Medya URLsini Giriniz',
+          value: linkurl,
         },
       ],
       buttons: [
         {
-          text: 'Cancel',
+          text: 'İptal',
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
@@ -67,10 +64,19 @@ export class Tab1Page {
           },
         },
         {
-          text: 'Ok',
+          text: 'Güncelle',
+          cssClass: 'secondary',
           handler: (alertData) => {
             //takes the data
-            this.getValues(category, classe, alertData.name1, this.userid);
+            this.getValues(alertData.name1, linkid);
+          },
+        },
+        {
+          text: 'Sil',
+          cssClass: 'danger',
+          handler: (alertData) => {
+            //takes the data
+            this.deleteData(linkid);
           },
         },
       ],
@@ -78,14 +84,12 @@ export class Tab1Page {
 
     await alert.present();
   }
-  getValues(cat, classe, link, id) {
+  getValues(link, linkid) {
     const data = {
-      category: cat,
-      class: classe,
       url: link,
-      userID: id,
+      id: linkid,
     };
-    this.serverService.addLink(data).subscribe(
+    this.serverService.updateLink(data).subscribe(
       (res: any) => {
         console.log('Success', res);
       },
@@ -95,12 +99,23 @@ export class Tab1Page {
       }
     );
   }
-  async openModal() {
-    const modal = await this.modalCtrl.create({
-      component: ModalAddLinkComponent,
-    });
-    modal.present();
+  deleteData(linkid) {
+    const datas = {
+      id: linkid,
+    };
+    console.log('datas :', datas);
+    this.deleteLink(datas);
+  }
 
-    const { data, role } = await modal.onWillDismiss();
+  deleteLink(data) {
+    console.log('delete data :', data);
+    this.serverService.deleteLink(data).subscribe(
+      (res: any) => {
+        console.log('Success', res);
+      },
+      (error: any) => {
+        console.log('error', error);
+      }
+    );
   }
 }

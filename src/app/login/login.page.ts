@@ -21,6 +21,7 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() {}
+
   async tabs() {
     this.md5password = Md5.hashStr(this.password);
     this.serverService.login(this.username).subscribe(
@@ -30,7 +31,9 @@ export class LoginPage implements OnInit {
           this.username === this.user[0].username &&
           this.md5password === this.user[0].password
         ) {
-          console.log('success');
+          const userid = this.user[0].id;
+          const id = this.storage.set('id', userid);
+          console.log('id :', id);
           this.route.navigateByUrl('/tabs');
         }
       },
@@ -42,5 +45,16 @@ export class LoginPage implements OnInit {
     console.log('tabs');
 
     //this.navCtrl.navigateRoot('/app/tabs/(home:home)')
+  }
+
+  getStorage() {
+    return this.storage.get('id').then((result) => {
+      console.log('storage id :', result);
+      return result;
+    });
+  }
+  clear() {
+    this.storage.remove('id');
+    console.log('clear');
   }
 }

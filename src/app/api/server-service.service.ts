@@ -18,4 +18,27 @@ export class ServerServiceService {
       'http://localhost:8888/dcard_api/login.php?username=' + username
     );
   }
+  getUserbyid(id: number) {
+    return this.http.get(
+      'http://localhost:8888/dcard_api/mainpage.php?id=' + id
+    );
+  }
+  getLinksbyid(id: number) {
+    return this.http.get('http://localhost:8888/dcard_api/links.php?id=' + id);
+  }
+  addLink(data) {
+    return this.http.post('http://localhost:8888/dcard_api/linkadd.php', data);
+  }
+  updateLink(data) {
+    return this.http.post(
+      'http://localhost:8888/dcard_api/linkupdate.php',
+      data
+    );
+  }
+  deleteLink(data) {
+    return this.http.post(
+      'http://localhost:8888/dcard_api/linkdelete.php',
+      data
+    );
+  }
 }
