@@ -41,4 +41,16 @@ export class ServerServiceService {
       data
     );
   }
+  updateFile(data) {
+    return this.http.post(
+      'http://localhost:8888/dcard_api/fileupdate.php',
+      data
+    );
+  }
+  updateUserProfile(data) {
+    return this.http.post(
+      'http://localhost:8888/dcard_api/userprofileupdate.php',
+      data
+    );
+  }
 }

@@ -39,6 +39,7 @@ export class LoginPage implements OnInit {
       },
       (error: any) => {
         console.log('Error', error);
+        //hata mesajı
       }
     );
 
