@@ -53,4 +53,10 @@ export class ServerServiceService {
       data
     );
   }
+  changeUserPasswrod(data) {
+    return this.http.post(
+      'http://localhost:8888/dcard_api/userpasswordchange.php',
+      data
+    );
+  }
 }
