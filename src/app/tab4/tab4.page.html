@@ -1,113 +1,100 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>tab4</ion-title>
+  <ion-toolbar color="danger">
+    <ion-title>Profil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-accordion-group [value]="['first']">
-    <ion-accordion value="first">
-      <ion-item slot="header" color="light">
-        <ion-label>First Accordion</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <div class="ion-activatable ripple-parent">
-          <div class="row">
-            <img class="resim" src="../../assets/imgs/b.png" />
-            <img class="resim1" src="../../assets/imgs/resim1.png" />
-          </div>
-          <ion-ripple-effect type="unbounded"></ion-ripple-effect>
-        </div>
-      </div>
-    </ion-accordion>
-    <ion-accordion value="second">
-      <ion-item slot="header" color="light">
-        <ion-label>Second Accordion</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <form
-          #form="ngForm"
-          (ngSubmit)="updateUser()"
-          method="post"
-          enctype="multipart/form-data"
-        >
-          <ion-item>
-            <ion-label position="stacked">İsim Soyisim</ion-label>
-            <ion-input
-              [(ngModel)]="this.user.nameSurname"
-              type="text"
-              name="nameSurname"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Telefon</ion-label>
-            <ion-input
-              [(ngModel)]="this.user.phone"
-              name="phone"
-              type="text"
-              (keyup.enter)="updateUser(form)"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">GSM</ion-label>
-            <ion-input
-              [(ngModel)]="this.user.gsm"
-              name="gsm"
-              type="text"
-              (keyup.enter)="updateUser(form)"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Mail</ion-label>
-            <ion-input
-              [(ngModel)]="this.user.mail"
-              name="mail"
-              type="text"
-              (keyup.enter)="updateUser(form)"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Ülke</ion-label>
-            <ion-input
-              [(ngModel)]="this.user.country"
-              name="country"
-              type="text"
-              (keyup.enter)="updateUser(form)"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Adres</ion-label>
-            <ion-input
-              [(ngModel)]="this.user.address"
-              name="address"
-              type="text"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Şirket</ion-label>
-            <ion-input
-              [(ngModel)]="this.user.company"
-              name="company"
-              type="text"
-            ></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Websitesi</ion-label>
-            <ion-input
-              [(ngModel)]="this.user.website"
-              name="website"
-              type="text"
-            ></ion-input>
-          </ion-item>
-          <button type="submit">test</button>
-        </form>
-      </div>
-    </ion-accordion>
-    <ion-accordion value="third">
-      <ion-item slot="header" color="light">
-        <ion-label>Third Accordion</ion-label>
-      </ion-item>
-      <div class="ion-padding" slot="content">Third Content</div>
-    </ion-accordion>
-  </ion-accordion-group>
+  <div class="ion-activatable ripple-parent" (click)="selectimageOptions()">
+    <div class="row">
+      <img class="resim" src="../../assets/imgs/b.png" />
+      <img class="resim1" src="../../assets/imgs/resim1.png" />
+    </div>
+    <ion-ripple-effect type="unbounded"></ion-ripple-effect>
+  </div>
+  <!-- <ion-row>
+    <div *ngIf="url">
+      <img [src]="santizeUrl(url)" height="100" width="150" />
+    </div>
+    <div *ngIf="imageurl">
+      <img [src]="santizeUrl(imageurl)" height="100" width="150" />
+    </div>
+  </ion-row> -->
+
+  <form
+    #form="ngForm"
+    (ngSubmit)="updateUser()"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <ion-item>
+      <ion-label position="stacked">İsim Soyisim</ion-label>
+      <ion-input
+        [(ngModel)]="this.user.nameSurname"
+        type="text"
+        name="nameSurname"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Telefon</ion-label>
+      <ion-input
+        [(ngModel)]="this.user.phone"
+        name="phone"
+        type="text"
+        (keyup.enter)="updateUser(form)"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">GSM</ion-label>
+      <ion-input
+        [(ngModel)]="this.user.gsm"
+        name="gsm"
+        type="text"
+        (keyup.enter)="updateUser(form)"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Mail</ion-label>
+      <ion-input
+        [(ngModel)]="this.user.mail"
+        name="mail"
+        type="text"
+        (keyup.enter)="updateUser(form)"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Ülke</ion-label>
+      <ion-input
+        [(ngModel)]="this.user.country"
+        name="country"
+        type="text"
+        (keyup.enter)="updateUser(form)"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Adres</ion-label>
+      <ion-input
+        [(ngModel)]="this.user.address"
+        name="address"
+        type="text"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Şirket</ion-label>
+      <ion-input
+        [(ngModel)]="this.user.company"
+        name="company"
+        type="text"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Websitesi</ion-label>
+      <ion-input
+        [(ngModel)]="this.user.website"
+        name="website"
+        type="text"
+      ></ion-input>
+    </ion-item>
+    <button type="submit">test</button>
+  </form>
 </ion-content>

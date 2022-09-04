@@ -1,10 +1,9 @@
 .resim {
   margin-left: 25%;
   max-width: 180px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   top: 0px;
-  right: 20px;
-  bottom: 20px;
-  left: 20px;
   border-radius: 50%;
   border-width: 2px;
   border-style: solid;
@@ -22,12 +21,13 @@
   position: relative;
 }
 .resim1 {
-  margin-left: 25%;
   max-width: 180px;
   top: 0px;
   right: 0px;
   bottom: 0px;
-  left: 20px;
+  left: 25%;
+  margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 100%;
   border-width: 90px;
   border-style: solid;

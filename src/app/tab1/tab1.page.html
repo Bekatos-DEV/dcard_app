@@ -1,27 +1,69 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Link İşlemleri</ion-title>
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title> Link ve Dosya</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-label class="linkekletitle">Link Ekle</ion-label>
-  </ion-item>
+  <ion-accordion-group>
+    <ion-accordion value="first">
+      <ion-item slot="header" color="light">
+        <ion-label>Link Ekle</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-button
+          expand="block"
+          fill="clear"
+          style="
+            height: 30%;
+            border-radius: 15%;
+            border-width: 5px;
+            border-style: dotted;
+            border-color: #192e59;
+          "
+          (click)="openModal()"
+          ><img src="../../assets/imgs/linkadd.png" style="max-width: 128px"
+        /></ion-button>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="second">
+      <ion-item slot="header" color="light">
+        <ion-label>Link Çıkar</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-button
+          expand="block"
+          fill="clear"
+          style="
+            height: 30%;
+            border-radius: 15%;
+            border-width: 5px;
+            border-style: dotted;
+            border-color: #192e59;
+          "
+          (click)="openModal()"
+          ><img src="../../assets/imgs/linkup.png" style="max-width: 128px"
+        /></ion-button>
+      </div>
+    </ion-accordion>
+    <ion-accordion value="third">
+      <ion-item slot="header" color="light">
+        <ion-label>Dosya Ekle</ion-label>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <ion-item>
+          <input type="file" (change)="onFileChange($event)" />
+        </ion-item>
+        <ion-item>
+          <input type="text" [(ngModel)]="dosyaname" />
+        </ion-item>
+        <ion-button color="primary" expand="full" (click)="submitForm()"
+          >Upload</ion-button
+        >
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
 
-  <ion-button
-    expand="block"
-    fill="clear"
-    style="
-      height: 30%;
-      border-radius: 15%;
-      border-width: 5px;
-      border-style: dotted;
-      border-color: #192e59;
-    "
-    (click)="openModal()"
-    ><img src="../../assets/imgs/linkadd.png" style="max-width: 128px"
-  /></ion-button>
   <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
     <ng-template>
       <ion-header>
@@ -50,20 +92,4 @@
       </ion-content>
     </ng-template>
   </ion-modal>
-  <ion-item>
-    <ion-label>Link Çıkar</ion-label>
-  </ion-item>
-  <ion-button
-    expand="block"
-    fill="clear"
-    style="
-      height: 30%;
-      border-radius: 15%;
-      border-width: 5px;
-      border-style: dotted;
-      border-color: #192e59;
-    "
-    (click)="openModal()"
-    ><img src="../../assets/imgs/linkup.png" style="max-width: 128px"
-  /></ion-button>
 </ion-content>

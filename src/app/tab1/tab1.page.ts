@@ -17,6 +17,8 @@ export class Tab1Page {
   userid: any;
   user: any = [];
   links: any = [];
+  dosyaname: any;
+  private file: File;
   constructor(
     public storage: Storage,
     private serverService: ServerServiceService,
@@ -102,5 +104,24 @@ export class Tab1Page {
     modal.present();
 
     const { data, role } = await modal.onWillDismiss();
+  }
+  onFileChange(fileChangeEvent) {
+    this.file = fileChangeEvent.target.files[0];
+    console.log('filechange', fileChangeEvent.target.files[0]);
+  }
+  async submitForm() {
+    const formData = new FormData();
+    formData.append('dosya', this.file);
+    formData.append('id', '1');
+    formData.append('fname', this.dosyaname);
+    console.log('form data file', formData.get('dosya'));
+    console.log('form data id', formData.get('id'));
+    console.log('form data fname', formData.get('fname'));
+    this.serverService.updateFile(formData).subscribe(
+      (res: any) => {
+        console.log('res', res);
+      },
+      (error: any) => {}
+    );
   }
 }

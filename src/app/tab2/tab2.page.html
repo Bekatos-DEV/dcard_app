@@ -1,17 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Tab 2 </ion-title>
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-searchbar
+      [(ngModel)]="autocomplete.input"
+      (ionInput)="UpdateSearchResults()"
+      placeholder="Burada arayın"
+      (ionClear)="ClearAutocomplete()"
+      style="margin-top: 15px; color: white; font-size: 20px !important"
+    ></ion-searchbar>
   </ion-toolbar>
-</ion-header>
+  <ion-list [hidden]="autocompleteItems.length === 0">
+    <ion-item
+      *ngFor="let item of autocompleteItems"
+      tappable
+      (click)="selectSearchResult(item)"
+    >
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
 
-<ion-content [fullscreen]="true">
-  <ion-item>
-    <input type="file" (change)="onFileChange($event)" />
-  </ion-item>
-  <ion-item>
-    <input type="text" [(ngModel)]="dosyaname" />
-  </ion-item>
-  <ion-button color="primary" expand="full" (click)="submitForm()"
-    >Upload</ion-button
+  <ion-button (click)="loadMap()" expand="block" shape="round" fill="outline">
+    <ion-icon slot="start" name="locate"></ion-icon>
+    Konumunuz
+  </ion-button>
+</ion-header>
+<ion-content>
+  <div class="map-wrapper" style="height: 70%">
+    <div id="map_center">
+      <ion-icon name="pin" size="large" color="danger"></ion-icon>
+    </div>
+    <div #map id="map" style="height: 100%"></div>
+  </div>
+  <ion-button (click)="ShowCords()" expand="block" color="danger" fill="solid"
+    >Lokasyon Göster</ion-button
   >
+  <ion-row>
+    <ion-col-8> </ion-col-8>
+    <ion-col-4>
+      <ion-toggle color="danger"></ion-toggle>
+    </ion-col-4>
+  </ion-row>
 </ion-content>
